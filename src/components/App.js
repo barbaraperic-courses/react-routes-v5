@@ -5,8 +5,9 @@ import {
   Link,
   Switch
 } from 'react-router-dom'
+import '../index.css'
+import Home from './Home'
 
-const Home = () => <h1>Hash History Basketball League</h1>
 const Players = () => <h1>Players</h1>
 const Teams = () => <h1>Teams</h1>
 
@@ -29,28 +30,30 @@ const routes = [
 export default function App () {
   return (
     <Router>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/players">Player</Link>
-        </li>
-        <li>
-          <Link to="/teams">Teams</Link>
-        </li>
-      </ul>
-      <Switch>
-        {routes.map(route => (
-          <Route
-            key={route.path}
-            path={route.path}
-            exact={route.exact}
-          >
-            <route.component />
-          </Route>
-        ))}
-      </Switch>
+      <div id="root">
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/players">Player</Link>
+          </li>
+          <li>
+            <Link to="/teams">Teams</Link>
+          </li>
+        </ul>
+        <Switch>
+          {routes.map(route => (
+            <Route
+              key={route.path}
+              path={route.path}
+              exact={route.exact}
+            >
+              <route.component />
+            </Route>
+          ))}
+        </Switch>
+      </div>
     </Router>
   )
 }
