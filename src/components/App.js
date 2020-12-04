@@ -7,8 +7,8 @@ import {
 } from 'react-router-dom'
 import '../index.css'
 import Home from './Home'
+import Players from './Players'
 
-const Players = () => <h1>Players</h1>
 const Teams = () => <h1>Teams</h1>
 
 const routes = [
@@ -31,16 +31,18 @@ export default function App () {
   return (
     <Router>
       <div id="root">
-        <ul>
+        <ul className="container navbar">
           <li>
             <Link to="/">Home</Link>
           </li>
-          <li>
-            <Link to="/players">Player</Link>
-          </li>
-          <li>
-            <Link to="/teams">Teams</Link>
-          </li>
+          <div className="nav-links">
+            <li>
+              <Link to="/players">Player</Link>
+            </li>
+            <li>
+              <Link to="/teams">Teams</Link>
+            </li>
+          </div>
         </ul>
         <Switch>
           {routes.map(route => (
