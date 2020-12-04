@@ -8,6 +8,7 @@ import {
   useParams, 
   useRouteMatch 
 } from "react-router-dom";
+// import { parse } from 'query-string'
 import slug from 'slug'
 
 const Player = ({ players }) => {
@@ -24,7 +25,7 @@ const Player = ({ players }) => {
         <ul className="info-list" style={{marginRight: 80}}>
           <li>Team</li>
           <div>
-            <Link to="/">
+            <Link to={`/${player.teamId}`}>
               {player.teamId}
             </Link>
           </div>
@@ -43,16 +44,18 @@ const Player = ({ players }) => {
 
 const Players = () => {
 
-  //const location = useLocation()
+  const location = useLocation()
   const { url } = useRouteMatch()
 
   const {
     response: players,
     loading
   } = usePlayers()
-  
-  //console.log(usePlayers())
 
+  // const team = location.search
+  // ? parse(location.search).teamId
+  // : null
+  
   if (loading === true) {
     return <p>LOADING</p>
   }
@@ -67,7 +70,7 @@ const Players = () => {
               <Link
                 to={{
                 pathname: `${url}/${slug(player.name)}`,
-                //search: location.search
+                search: location.search
                 }}
               >
                 {player.name}
