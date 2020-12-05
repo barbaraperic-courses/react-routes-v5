@@ -8,8 +8,7 @@ import {
 import '../index.css'
 import Home from './Home'
 import Players from './Players'
-
-const Teams = () => <h1>Teams</h1>
+import Teams from './Teams'
 
 const routes = [
   {
