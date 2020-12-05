@@ -4,18 +4,19 @@ import {
   Route, 
   Switch,
   Link, 
-  useLocation, 
+  // useLocation, 
   useParams, 
   useRouteMatch 
 } from "react-router-dom";
 // import { parse } from 'query-string'
 import slug from 'slug'
 
+import Sidebar from './Sidebar'
+
 const Player = ({ players }) => {
   const { playerId }= useParams()
-
   const player = players.find(player => slug(player.name) === playerId)
-  console.log('player', player)
+
   return (
     <div className="panel fade-enter-done">
       <img src={player.avatar} alt={`${player.name}'s avatar`} className="avatar"/>
@@ -43,18 +44,19 @@ const Player = ({ players }) => {
 }
 
 const Players = () => {
-
-  const location = useLocation()
+  //const location = useLocation()
   const { url } = useRouteMatch()
+
+  // const team = location.search
+  // ? parse(location.search).teamId
+  // : null
+  
+  // console.log('team', team)
 
   const {
     response: players,
     loading
   } = usePlayers()
-
-  // const team = location.search
-  // ? parse(location.search).teamId
-  // : null
   
   if (loading === true) {
     return <p>LOADING</p>
@@ -62,7 +64,11 @@ const Players = () => {
   
   return (
     <div className="container two-column">
-      <div>
+      <Sidebar
+        title="Players"
+        list={players.map(player => player.name)}
+      />
+      {/* <div>
         <h1 className="header">Players</h1>
         <ul className="sidebar-list">
           {players.map(player => (
@@ -77,12 +83,10 @@ const Players = () => {
               </Link>
             </li>
           ))}
-        </ul>
-      </div >
-      
+        </ul> */}
       <Switch>
         <Route path={`${url}/:playerId`}>
-            <Player players={players}/>
+          <Player players={players}/>
         </Route>
         <Route path="*">
           <div className="sidebar-instruction">Select a player</div>
