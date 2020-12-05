@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switch, Route, useRouteMatch, useParams } from 'react-router-dom'
+import { Switch, Route, Link, useRouteMatch, useParams } from 'react-router-dom'
 import useTeamNames from '../hooks/useTeamNames'
 import useTeam from '../hooks/useTeam'
 import '../index.css'
@@ -14,8 +14,7 @@ const Team = () => {
     response,
     loading
   } = useTeam(team)
-  console.log(response)
-  //console.log('params',params)
+
   if (loading) {
     return <div>LOADING</div>
   }
@@ -28,9 +27,7 @@ const Team = () => {
         <li>Manager <div>{response.manager}</div></li>
         <li>Coach <div>{response.coach}</div></li>
       </ul>
-      {/* <h1>{established}</h1>  
-      <h1>{manager}</h1>  
-      <h1>{coach}</h1>   */}
+      <Link to={`/${response.id}`} className="center btn-main">{response.id} team page</Link>
     </div>
   )
 }

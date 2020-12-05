@@ -9,6 +9,8 @@ import '../index.css'
 import Home from './Home'
 import Players from './Players'
 import Teams from './Teams'
+import TeamPage from './TeamPage'
+import Article from './Article'
 
 const routes = [
   {
@@ -23,6 +25,15 @@ const routes = [
   {
     path: '/teams',
     component: Teams,
+  },
+  {
+    path: '/:teamId',
+    exact: true,
+    component: TeamPage,
+  },
+  {
+    path: '/:teamId/article/:articleId',
+    component: Article,
   }
 ]
 
