@@ -40,8 +40,6 @@ const TeamsPage = () => {
     return <div>LOADING</div>
   }
 
-  console.log(articles)
-
   return (
     <div className="panel">
       <TeamLogo id={team.id}/>
