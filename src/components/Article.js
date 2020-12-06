@@ -1,5 +1,6 @@
 import React from 'react';
-import { useParams } from 'react-router-dom'
+import { useParams, useRouteMatch, useLocation } from 'react-router-dom'
+import slug from 'slug'
 import useArticle from '../hooks/useArticle'
 import useTeamsArticles from '../hooks/useTeamsArticles'
 import Sidebar from './Sidebar'
@@ -23,27 +24,44 @@ function useArticlePageData(teamId, articleId) {
 }
 
 const Article = () => {
-  const { teamId, articleId } = useParams()
-  console.log('team',useTeamsArticles(teamId))
+  // const { teamId, articleId } = useParams()
+  const params = useParams()
+  const url = useRouteMatch()
+  // const location = useLocation()
+  console.log('params',params)
+  console.log('url', url)
+  // console.log('location',location)
 
-  const { 
-    article,
-    articleList,
-    loading
-  } = useArticlePageData(teamId, articleId)
+  // const path = useRouteMatch()
+  // const location = useLocation()
+  // console.log(useArticle(params.teamId))
+  // console.log(path)
 
-  if (loading) {
-    return <h1>Loading</h1>
-  }
+  // console.log('path',path)
+  
+  // const { 
+  //   article,
+  //   articleList,
+  //   loading
+  // } = useArticlePageData(teamId, articleId)
+
+  // if (loading) {
+  //   return <h1>Loading</h1>
+  // }
+  
+  // console.log(articleList.map(article => article.title))
+  
+  // const articleTitle = articleList.find(article => slug(article.id) === articleId)
+  // console.log('articleTitle', articleTitle)
 
   return (
     <div>
-      <Sidebar 
+      {/* <Sidebar 
         title="Articles"
         list={articleList.map(article => article.title)}
       />
       <h1>{article.title}</h1>
-      <p>{article.body}</p>
+      <p>{article.body}</p> */}
     </div>
   )
 }

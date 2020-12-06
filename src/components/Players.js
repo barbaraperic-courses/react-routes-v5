@@ -10,7 +10,6 @@ import {
 } from "react-router-dom";
 // import { parse } from 'query-string'
 import slug from 'slug'
-
 import Sidebar from './Sidebar'
 
 const Player = ({ players }) => {

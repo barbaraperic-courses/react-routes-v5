@@ -60,7 +60,7 @@ const TeamsPage = () => {
       <ul>
         {articles.map(article => (
           <li key={article.id}>
-            <Link to={`${url}/article/${slug(article.id)}`}>
+            <Link to={`${url}/articles/${slug(article.title)}`}>
               {article.title}
             </Link>
           </li>

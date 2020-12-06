@@ -32,7 +32,7 @@ const routes = [
     component: TeamPage,
   },
   {
-    path: '/:teamId/article/:articleId',
+    path: '/:teamId/articles/:articleId',
     component: Article,
   }
 ]

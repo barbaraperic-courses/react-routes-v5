@@ -20,7 +20,10 @@ const Sidebar = (props) => {
   const location = useLocation()
   const { url } = useRouteMatch()
 
+  //\/(?<element>\w+)\/\w+\/
+  
   const { title, list } = props
+  
   return (
     <div>
       <h3>{title}</h3>
