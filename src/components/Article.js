@@ -1,53 +1,46 @@
 import React from 'react';
-import { useParams, useRouteMatch, useLocation } from 'react-router-dom'
+import { Switch, Route, useParams, useRouteMatch, useLocation } from 'react-router-dom'
 import slug from 'slug'
 import useArticle from '../hooks/useArticle'
 import useTeamsArticles from '../hooks/useTeamsArticles'
 import Sidebar from './Sidebar'
 
-function useArticlePageData(teamId, articleId) {
-  const {
-    response: articleList,
-    loading: teamsArticleLoading
-  } = useTeamsArticles(teamId)
+const Article = () => {
+  const { teamId, articleId } = useParams()
 
   const {
     response: article,
-    loading: articleLoading
-  } = useArticle({teamId, articleId})
+    loading
+  } = useArticle({ teamId, articleId })
 
-  return {
-    article,
-    articleList,
-    loading: teamsArticleLoading || articleLoading
+  if(loading) {
+    return null
   }
+
+  return (
+    <div className="panel">
+      <article className='article'>
+        <h1 className="header">{article.title}</h1>
+        <p>{article.body}</p>
+      </article>
+    </div>
+  )
 }
 
-const Article = () => {
-  // const { teamId, articleId } = useParams()
-  const params = useParams()
-  const url = useRouteMatch()
-  // const location = useLocation()
-  console.log('params',params)
-  console.log('url', url)
-  // console.log('location',location)
+const Articles = () => {
+  const { teamId } = useParams()
+  const { path } = useRouteMatch()
 
-  // const path = useRouteMatch()
-  // const location = useLocation()
-  // console.log(useArticle(params.teamId))
-  // console.log(path)
-
-  // console.log('path',path)
+  const {
+    response: articles,
+    loading
+  } = useTeamsArticles(teamId)
   
-  // const { 
-  //   article,
-  //   articleList,
-  //   loading
-  // } = useArticlePageData(teamId, articleId)
 
-  // if (loading) {
-  //   return <h1>Loading</h1>
-  // }
+  if (loading) {
+    return <h1>Loading</h1>
+  }
+
   
   // console.log(articleList.map(article => article.title))
   
@@ -55,15 +48,18 @@ const Article = () => {
   // console.log('articleTitle', articleTitle)
 
   return (
-    <div>
-      {/* <Sidebar 
+    <div className='container two-column'>
+      <Sidebar 
         title="Articles"
-        list={articleList.map(article => article.title)}
+        list={articles.map(article => article.title)}
       />
-      <h1>{article.title}</h1>
-      <p>{article.body}</p> */}
+      <Switch>
+        <Route path={`${path}/:articleId`}>
+          <Article />
+        </Route>
+      </Switch>
     </div>
   )
 }
 
-export default Article
+export default Articles
