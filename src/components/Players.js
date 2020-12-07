@@ -4,13 +4,12 @@ import {
   Route, 
   Switch,
   Link, 
-  // useLocation, 
   useParams, 
   useRouteMatch 
 } from "react-router-dom";
-// import { parse } from 'query-string'
 import slug from 'slug'
 import Sidebar from './Sidebar'
+import Loading from './Loading'
 
 const Player = ({ players }) => {
   const { playerId }= useParams()
@@ -43,14 +42,7 @@ const Player = ({ players }) => {
 }
 
 const Players = () => {
-  //const location = useLocation()
   const { url } = useRouteMatch()
-
-  // const team = location.search
-  // ? parse(location.search).teamId
-  // : null
-  
-  // console.log('team', team)
 
   const {
     response: players,
@@ -58,7 +50,7 @@ const Players = () => {
   } = usePlayers()
   
   if (loading === true) {
-    return <p>LOADING</p>
+    return <Loading />
   }
   
   return (
@@ -67,22 +59,6 @@ const Players = () => {
         title="Players"
         list={players.map(player => player.name)}
       />
-      {/* <div>
-        <h1 className="header">Players</h1>
-        <ul className="sidebar-list">
-          {players.map(player => (
-            <li style={{fontWeight: 'normal'}} key={player.name}>
-              <Link
-                to={{
-                pathname: `${url}/${slug(player.name)}`,
-                search: location.search
-                }}
-              >
-                {player.name}
-              </Link>
-            </li>
-          ))}
-        </ul> */}
       <Switch>
         <Route path={`${url}/:playerId`}>
           <Player players={players}/>
@@ -92,7 +68,6 @@ const Players = () => {
         </Route>
       </Switch>
     </div>
-    
   )
 }
 

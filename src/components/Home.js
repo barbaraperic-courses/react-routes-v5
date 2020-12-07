@@ -1,5 +1,5 @@
 import React from 'react';
-import '../index.css'
+import { Link } from 'react-router-dom'
 import TeamLogo from './TeamLogo'
 
 const ids = ['bulls', 'foxes', 'hedgehogs', 'koalas', 'lemurs']
@@ -11,11 +11,11 @@ const Home = () => {
       <h3 className="header text-center">Select a team</h3>
       <div className="home-grid">
         {ids.map(id => (
-          <a href="/" key={id}>
-            <TeamLogo
+          <Link to={`/${id}`} key={id}>
+            <TeamLogo 
               id={id} 
             />
-          </a>
+          </Link>
         ))}
       </div>
     </div>

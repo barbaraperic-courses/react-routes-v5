@@ -1,9 +1,5 @@
 import React from 'react'
-import { 
-  Link, 
-  useLocation, 
-  useRouteMatch 
-} from "react-router-dom";
+import { Link, useLocation, useRouteMatch } from "react-router-dom";
 import slug from 'slug'
 
 const CustomLink = ({to, children }) => {
@@ -19,8 +15,6 @@ const CustomLink = ({to, children }) => {
 const Sidebar = (props) => {
   const location = useLocation()
   const { url } = useRouteMatch()
-
-  //\/(?<element>\w+)\/\w+\/
   
   const { title, list } = props
   

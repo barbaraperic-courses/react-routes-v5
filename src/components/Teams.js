@@ -2,10 +2,9 @@ import React from 'react'
 import { Switch, Route, Link, useRouteMatch, useParams } from 'react-router-dom'
 import useTeamNames from '../hooks/useTeamNames'
 import useTeam from '../hooks/useTeam'
-import '../index.css'
 import Sidebar from './Sidebar'
 import TeamLogo from './TeamLogo'
-
+import Loading from './Loading'
 
 const Team = () => {
   const params = useParams()
@@ -16,7 +15,7 @@ const Team = () => {
   } = useTeam(team)
 
   if (loading) {
-    return <div>LOADING</div>
+    return <Loading />
   }
   return (
     <div className="panel">
@@ -41,7 +40,7 @@ const Teams = () => {
   } = useTeamNames()
 
   if (loading) {
-    return <h2>LOADING</h2>
+    return <Loading />
   }
 
   return (
@@ -55,7 +54,7 @@ const Teams = () => {
         <Team />
       </Route>
       <Route path="*">
-        <div>Select a team</div>
+        <div className="sidebar-instruction">Select a team</div>
       </Route>
     </Switch>
     </div>

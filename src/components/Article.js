@@ -1,9 +1,9 @@
 import React from 'react';
-import { Switch, Route, useParams, useRouteMatch, useLocation } from 'react-router-dom'
-import slug from 'slug'
+import { Switch, Route, useParams, useRouteMatch } from 'react-router-dom'
 import useArticle from '../hooks/useArticle'
 import useTeamsArticles from '../hooks/useTeamsArticles'
 import Sidebar from './Sidebar'
+import Loading from './Loading'
 
 const Article = () => {
   const { teamId, articleId } = useParams()
@@ -38,14 +38,8 @@ const Articles = () => {
   
 
   if (loading) {
-    return <h1>Loading</h1>
+    return <Loading />
   }
-
-  
-  // console.log(articleList.map(article => article.title))
-  
-  // const articleTitle = articleList.find(article => slug(article.id) === articleId)
-  // console.log('articleTitle', articleTitle)
 
   return (
     <div className='container two-column'>

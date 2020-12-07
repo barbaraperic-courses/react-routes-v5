@@ -1,9 +1,10 @@
 import React from 'react'
 import { Link, useParams, useRouteMatch } from 'react-router-dom'
+import slug from 'slug'
 import useTeam from '../hooks/useTeam'
 import useTeamArticles from '../hooks/useTeamsArticles'
 import TeamLogo from './TeamLogo'
-import slug from 'slug'
+import Loading from './Loading'
 
 function useTeamPageData(teamId) {
   const { 
@@ -26,8 +27,6 @@ function useTeamPageData(teamId) {
 const TeamsPage = () => {
   const { teamId } = useParams()
   const { url } = useRouteMatch()
-
-  console.log('URL', url)
   
   const {
     team,
@@ -37,7 +36,7 @@ const TeamsPage = () => {
 
 
   if(loading) {
-    return <div>LOADING</div>
+    return <Loading />
   }
 
   return (
